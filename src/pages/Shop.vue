@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <h1>快乐大卖场</h1>
-        <p>你有{{ userStore.cash }} 元，赶紧去购物吧~</p>
+        <p>你有 {{ userStore.cash }} 元，赶紧去购物吧~</p>
         <div class="products">
             <div class="product" v-for="product of products">
                 <img :src="product.img" />
                 <p class="name">{{ product.name }}</p>
                 <div class="bottom">
-                    <div class="price">价格:{{ product.price }}</div>
+                    <div class="price">价格：{{ product.price }}</div>
                     <button
                         v-if="userStore.cash >= product.price"
                         class="buy"
@@ -65,15 +65,10 @@ export default {
 
 .products .product {
     width: 200px;
-    height: 260px;
-
-    border-radius: 8px;
-    overflow: hidden;
 }
 
 .products .product .name {
     margin: 0;
-    height: 20px;
     text-align: center;
     background-color: #eee;
 }
@@ -86,7 +81,6 @@ export default {
 }
 .products .product .bottom {
     height: 40px;
-
     display: flex;
 }
 .products .product .bottom .price {

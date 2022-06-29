@@ -24,7 +24,7 @@ export default {
                 // 发工资
                 this.userStore.payoff(100)
                 this.isWork = false
-            }, 3000)
+            }, 300)
         },
     },
 }

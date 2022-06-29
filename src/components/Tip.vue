@@ -1,9 +1,9 @@
 <template>
-    <header class="navigator">
-        <a class="home" href="/">首页</a>
-        <a href="/store">仓库：{{ userStore.amount }} 件物品</a>
-    </header>
+    <router-link class="tip" :to="{ name: 'store' }"
+        >仓库里有 {{ userStore.amount }} 件商品</router-link
+    >
 </template>
+
 <script>
 import { useUserStore } from "../stores/user"
 
@@ -27,23 +27,19 @@ export default {
     },
 }
 </script>
-
 <style scoped>
-.navigator {
-    max-width: 800px;
-    margin: 0 auto;
+.tip {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 
-    height: 60px;
+    padding: 10px 20px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.navigator a {
+    border-radius: 8px;
+
+    color: white;
+
     text-decoration: none;
-    color: #333;
-}
-.navigator .home {
-    font-size: 26px;
+    background-color: purple;
 }
 </style>
