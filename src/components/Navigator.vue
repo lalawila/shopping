@@ -2,7 +2,8 @@
     <header class="navigator">
         <router-link class="home" :to="{ name: 'home' }">首页</router-link>
         <div class="buttons">
-            <router-link :to="{ name: 'shop' }">购物</router-link>
+            <router-link :to="{ name: 'cart' }">购物车</router-link>
+            <router-link :to="{ name: 'order' }">订单</router-link>
             <router-link :to="{ name: 'work' }">打工</router-link>
         </div>
     </header>

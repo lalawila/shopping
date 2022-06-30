@@ -1,6 +1,9 @@
 <template>
-    <router-link class="tip" :to="{ name: 'store' }"
-        >仓库里有 {{ userStore.amount }} 件商品</router-link
+    <router-link
+        v-if="userStore.cartAmount > 0"
+        class="tip"
+        :to="{ name: 'cart' }"
+        >购物车里有 {{ userStore.cartAmount }} 件商品</router-link
     >
 </template>
 

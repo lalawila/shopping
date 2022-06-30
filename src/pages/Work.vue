@@ -22,7 +22,7 @@ export default {
             this.isWork = true
             setTimeout(() => {
                 // 发工资
-                this.userStore.payoff(100)
+                this.userStore.payoff(1000)
                 this.isWork = false
             }, 300)
         },

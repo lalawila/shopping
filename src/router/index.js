@@ -1,9 +1,9 @@
 import * as VueRouter from "vue-router"
 
 import Home from "../pages/Home.vue"
-import Shop from "../pages/Shop.vue"
 import Work from "../pages/Work.vue"
-import Store from "../pages/Store.vue"
+import Cart from "../pages/Cart.vue"
+import Order from "../pages/Order.vue"
 
 const routes = [
     {
@@ -12,20 +12,19 @@ const routes = [
         component: Home, // 虽配置名为 component 组件，但我更愿意理解为 page 页面
     },
     {
-        name: "shop",
-        path: "/shop",
-        component: Shop,
-    },
-    {
         name: "work",
         path: "/work",
         component: Work,
     },
-
     {
-        name: "store",
-        path: "/store",
-        component: Store,
+        name: "order",
+        path: "/order",
+        component: Order,
+    },
+    {
+        name: "cart",
+        path: "/cart",
+        component: Cart,
     },
 ]
 

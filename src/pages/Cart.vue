@@ -1,13 +1,20 @@
 <template>
     <div class="container">
-        <h1>你的仓库共有 {{ userStore.amount }} 件物品</h1>
-        <div class="orders">
-            <div class="order" v-for="(order, index) of userStore.purchased">
-                <img :src="order.product.img" />
+        <h1>你的购物车共有 {{ userStore.cartAmount }} 件物品</h1>
+        <div class="operation">
+            <span>商品总计{{ userStore.totalPrice }}元</span>
+            <button v-if="userStore.isEnough" @click="payment">支付</button>
+            <button v-else disabled>
+                你的现金为 {{ userStore.cash }} 元，去打工吧
+            </button>
+        </div>
+        <div class="cart">
+            <div class="product" v-for="(item, index) of userStore.cart">
+                <img :src="item.product.img" />
                 <div class="right">
-                    <div>产品: {{ order.product.name }}</div>
-                    <div>价格: {{ order.product.price }} 元</div>
-                    <div>购买于: {{ formatTimestamp(order.time) }}</div>
+                    <div>产品: {{ item.product.name }}</div>
+                    <div>价格: {{ item.product.price }} 元</div>
+                    <div>添加于: {{ formatTimestamp(item.addTime) }}</div>
                     <button class="discard" @click="discard(index)">
                         丢弃
                     </button>
@@ -27,10 +34,11 @@ export default {
         }
     },
     methods: {
+        payment() {
+            this.userStore.payment()
+        },
         discard(index) {
-            if (confirm("确认丢弃吗？")) {
-                const result = this.userStore.discard(index)
-            }
+            this.userStore.discard(index)
         },
         fillZero(n) {
             if (n < 10) {
@@ -57,7 +65,7 @@ export default {
     max-width: 450px;
     margin: 0 auto;
 }
-.orders .order {
+.cart .product {
     height: 140px;
     padding: 20px 0;
 
@@ -65,21 +73,21 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
-.orders .order:not(:last-child) {
+.cart .product:not(:last-child) {
     border-bottom: 1px solid #ccc;
 }
-.orders .order img {
+.cart .product img {
     object-fit: cover;
 
     width: 100px;
     height: 100px;
 }
 
-.orders .order .right {
+.cart .product .right {
     text-align: right;
     font-size: 14px;
 }
-.orders .order .right .discard {
+.cart .product .right .discard {
     outline: none;
     border: none;
 
@@ -89,5 +97,10 @@ export default {
     background-color: orange;
 
     cursor: pointer;
+}
+
+.container .operation {
+    display: flex;
+    justify-content: space-between;
 }
 </style>
