@@ -1,54 +1,61 @@
 import { defineStore } from "pinia"
 
 export const useUserStore = defineStore("user", {
-    state: () => {
+    state() {
         return {
-            cash: 0, // 用户现金
+            cash: 100, // 现金
             cart: [], // 购物车
             orders: [], // 订单
         }
     },
     getters: {
         cartAmount() {
+            // 返回购物车的数量
             return this.cart.length
         },
         ordersAmount() {
+            // 返回订单的数量
             return this.orders.length
         },
         totalPrice() {
+            // 购物车里所有商品的价格
             let totalPrice = 0
+
             for (const item of this.cart) {
                 totalPrice += item.product.price
             }
+
             return totalPrice
         },
         isEnough() {
-            return this.totalPrice <= this.cash
+            // 钱是否足够支付购物车的商品
+            return this.cash >= this.totalPrice
         },
     },
     actions: {
-        payoff(salary) {
-            // 发工资
-            this.cash += salary
+        payoff() {
+            this.cash += 100
         },
         addToCart(product) {
+            // 加入购物车
             this.cart.push({
-                product,
-                addTime: Date.now(),
+                product, // 商品
+                addTime: Date.now(), // 添加到购物车的时间
             })
         },
         discard(index) {
+            // 根据序号从购物车删除
             this.cart.splice(index, 1)
         },
         payment() {
-            // 钱不够就不能付款
+            // 支付购物车里所有的商品
             if (!this.isEnough) return
 
-            // 创建一个订单对象
+            // 支付的订单对象
             const order = {}
-            // 支付时间等于当前时间戳
+            // 支付的时间等于当前时间戳
             order.paymentTime = Date.now()
-            // 创建一个对象保存订单中的商品
+            // 创建一个空列表保存所有的商品
             order.products = []
 
             for (const item of this.cart) {
@@ -57,12 +64,13 @@ export const useUserStore = defineStore("user", {
                     price: item.product.price,
                     img: item.product.img,
                 }
+
                 order.products.push(product)
             }
 
             this.orders.unshift(order)
 
-            // 减去商品价格
+            // 减去商品的价格
             this.cash -= this.totalPrice
 
             // 清空购物车

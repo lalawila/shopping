@@ -2,8 +2,8 @@ import * as VueRouter from "vue-router"
 
 import Home from "../pages/Home.vue"
 import Work from "../pages/Work.vue"
-import Cart from "../pages/Cart.vue"
 import Order from "../pages/Order.vue"
+import Cart from "../pages/Cart.vue"
 
 const routes = [
     {
@@ -21,6 +21,7 @@ const routes = [
         path: "/order",
         component: Order,
     },
+
     {
         name: "cart",
         path: "/cart",

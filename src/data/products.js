@@ -1,13 +1,13 @@
 const products = [
     {
-        name: "奥特曼",
         img: "/奥特曼.jpg",
+        name: "奥特曼",
         price: 800,
     },
     {
-        name: "苹果",
         img: "/苹果.jpg",
-        price: 10,
+        name: "苹果",
+        price: 20,
     },
 ]
 

@@ -2,11 +2,12 @@
     <router-link
         v-if="userStore.cartAmount > 0"
         class="tip"
-        :to="{ name: 'cart' }"
+        :to="{
+            name: 'cart',
+        }"
         >购物车里有 {{ userStore.cartAmount }} 件商品</router-link
     >
 </template>
-
 <script>
 import { useUserStore } from "../stores/user"
 
@@ -16,17 +17,6 @@ export default {
         return {
             userStore,
         }
-    },
-    methods: {
-        buy(product) {
-            const result = this.userStore.purchase(product)
-
-            if (result) {
-                alert("购买成功")
-            } else {
-                alert("购买失败")
-            }
-        },
     },
 }
 </script>
